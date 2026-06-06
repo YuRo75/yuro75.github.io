@@ -1,0 +1,11 @@
+{
+  "name": "Yuri Roos",
+  "short_name": "YuRo",
+  "icons": [
+    { "src": "icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "icon-512.png", "type": "image/png", "sizes": "512x512" }
+  ],
+  "theme_color": "#6E35AE",
+  "background_color": "#0d1117",
+  "display": "standalone"
+}
