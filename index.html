@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yuri Roos · Home</title>
+<style>
+  :root{
+    --navy:#0d1117; --panel:#161b22; --blue:#2f81f7; --blue2:#1f6feb;
+    --ink:#e6edf3; --muted:#8b949e; --line:#30363d; --card:#161b22;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;min-height:100vh;font-family:-apple-system,'Segoe UI',system-ui,Arial,sans-serif;
+    color:var(--ink);background:radial-gradient(1200px 600px at 50% -10%,#1b2742 0%,#0d1117 55%);}
+  .wrap{max-width:880px;margin:0 auto;padding:72px 24px 80px}
+  .hero{text-align:center;margin-bottom:48px}
+  .avatar{width:96px;height:96px;border-radius:50%;background:linear-gradient(135deg,var(--blue),#8957e5);
+    display:flex;align-items:center;justify-content:center;font-size:38px;font-weight:800;color:#fff;margin:0 auto 20px;
+    box-shadow:0 8px 30px rgba(47,129,247,.35)}
+  h1{margin:0 0 8px;font-size:34px;font-weight:800;letter-spacing:-.5px}
+  .tag{color:var(--muted);font-size:16px;margin:0}
+  .social{display:flex;gap:14px;justify-content:center;margin-top:20px}
+  .social a{color:var(--muted);font-size:14px;border:1px solid var(--line);padding:7px 14px;border-radius:20px;text-decoration:none;transition:.15s}
+  .social a:hover{color:#fff;border-color:var(--blue);background:rgba(47,129,247,.12)}
+  .sectitle{font-size:13px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:700;margin:0 0 16px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .card{display:block;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;
+    text-decoration:none;color:inherit;transition:.18s;position:relative;overflow:hidden}
+  .card:hover{border-color:var(--blue);transform:translateY(-3px);box-shadow:0 12px 34px rgba(0,0,0,.4)}
+  .card .ico{font-size:24px;margin-bottom:12px;display:block}
+  .card h3{margin:0 0 6px;font-size:18px;display:flex;align-items:center;gap:8px}
+  .card p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
+  .card .arrow{position:absolute;top:22px;right:22px;color:var(--muted);transition:.18s}
+  .card:hover .arrow{color:var(--blue);transform:translate(3px,-3px)}
+  .live{display:inline-block;font-size:11px;font-weight:700;color:#3fb950;background:rgba(63,185,80,.12);
+    border:1px solid rgba(63,185,80,.3);border-radius:20px;padding:2px 9px;vertical-align:middle}
+  footer{text-align:center;color:var(--muted);font-size:13px;margin-top:56px}
+  footer a{color:var(--blue);text-decoration:none}
+  @media(max-width:680px){.grid{grid-template-columns:1fr}h1{font-size:28px}}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <div class="avatar">YR</div>
+      <h1>Yuri Roos</h1>
+      <p class="tag">Microsoft · Partner Development · building useful things with AI</p>
+      <div class="social">
+        <a href="https://github.com/YuRo75">GitHub</a>
+        <a href="https://yuro75.github.io/github-training-manual/">Training Manual</a>
+      </div>
+    </div>
+
+    <p class="sectitle">Projects &amp; Sites</p>
+    <div class="grid">
+
+      <a class="card" href="https://yuro75.github.io/github-training-manual/">
+        <span class="arrow">&#8599;</span>
+        <span class="ico">&#128218;</span>
+        <h3>GitHub Training Manual <span class="live">LIVE</span></h3>
+        <p>A hands-on, beginner-to-contributor guide: repos, Git, branching, pull requests, forking, Actions, and the CLI.</p>
+      </a>
+
+      <a class="card" href="https://github.com/YuRo75?tab=repositories">
+        <span class="arrow">&#8599;</span>
+        <span class="ico">&#128193;</span>
+        <h3>All Repositories</h3>
+        <p>Browse every public repository on my GitHub account.</p>
+      </a>
+
+    </div>
+
+    <footer>
+      Hosted on GitHub Pages &middot; <a href="https://github.com/YuRo75/yuro75.github.io">source</a> &middot; Updated June 2026
+    </footer>
+  </div>
+</body>
+</html>
