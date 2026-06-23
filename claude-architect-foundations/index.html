@@ -631,13 +631,21 @@ allowed-tools: [shell, filesystem]
 </footer>
 
 <script>
-  // Reading progress bar
+  // Reading progress bar (rAF-throttled + passive listener to avoid layout thrash on scroll)
   const pbar=document.getElementById('pbar');
-  window.addEventListener('scroll',()=>{
+  let pbarTicking=false;
+  function updateProgressBar(){
     const h=document.documentElement;
     const scrolled=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
     pbar.style.width=scrolled+'%';
-  });
+    pbarTicking=false;
+  }
+  window.addEventListener('scroll',()=>{
+    if(!pbarTicking){
+      pbarTicking=true;
+      requestAnimationFrame(updateProgressBar);
+    }
+  },{passive:true});
   // Persist checklist
   const box=document.getElementById('checklist-box');
   const boxes=box.querySelectorAll('input');
