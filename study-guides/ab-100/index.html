@@ -306,6 +306,7 @@ const QUESTIONS=[
 const qWrap=document.getElementById('questions');
 const answered={};let correctCount=0;
 
+const frag=document.createDocumentFragment();
 QUESTIONS.forEach((item,qi)=>{
   const card=document.createElement('div');card.className='q-card';
   const opts=item.o.map((t,oi)=>`<div class="opt" data-qi="${qi}" data-oi="${oi}"><span class="ltr">${String.fromCharCode(65+oi)}</span><span>${t}</span></div>`).join('');
@@ -314,11 +315,13 @@ QUESTIONS.forEach((item,qi)=>{
     <div class="q-text">${item.q}</div>
     <div class="options">${opts}</div>
     <div class="explain" id="ex${qi}"></div>`;
-  qWrap.appendChild(card);
+  frag.appendChild(card);
 });
+qWrap.appendChild(frag);
 
-document.querySelectorAll('.opt').forEach(el=>{
-  el.addEventListener('click',()=>choose(+el.dataset.qi,+el.dataset.oi));
+qWrap.addEventListener('click',e=>{
+  const el=e.target.closest('.opt');
+  if(el&&qWrap.contains(el))choose(+el.dataset.qi,+el.dataset.oi);
 });
 
 function choose(qi,oi){
