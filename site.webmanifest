@@ -1,11 +1,14 @@
 {
-  "name": "Yuri Roos",
+  "name": "YuRo @ GitHub",
   "short_name": "YuRo",
+  "description": "Study guides, certification practice tests, and shareable prompt books in one place.",
   "icons": [
     { "src": "icon-192.png", "type": "image/png", "sizes": "192x192" },
     { "src": "icon-512.png", "type": "image/png", "sizes": "512x512" }
   ],
-  "theme_color": "#6E35AE",
+  "start_url": "/",
+  "scope": "/",
+  "theme_color": "#0d1117",
   "background_color": "#0d1117",
   "display": "standalone"
 }
