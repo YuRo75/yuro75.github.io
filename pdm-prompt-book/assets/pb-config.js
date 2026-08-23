@@ -1,7 +1,7 @@
 window.PB_CONFIG = window.PB_CONFIG || {};
 window.PB_CONFIG.mail = Object.assign(
   {
-    to: "yuriroos@microsoft.com",
+    to: "yuriroos@outlook.com",
     bridgeUrl: "",
     healthUrl: "",
     requestTimeoutMs: 6000,

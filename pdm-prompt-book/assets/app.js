@@ -46,7 +46,7 @@ let favorites = new Set(JSON.parse(localStorage.getItem("pb2-fav") || "[]"));
 let AGENT_COUNTS = {};
 // Mail bridge config (override here to retarget the local send bridge / recipient).
 const DEFAULT_MAIL_CONFIG = {
-  to: "yuriroos@microsoft.com",
+  to: "yuriroos@outlook.com",
   bridgeUrl: "http://localhost:8765/sendmail",
   healthUrl: "",
   requestTimeoutMs: 6000,
