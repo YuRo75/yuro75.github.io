@@ -1,0 +1,101 @@
+.cp-ctrl-bar {
+  position: fixed;
+  top: 32px;
+  right: max(44px, calc((100vw - 1280px) / 2 + 44px));
+  display: flex;
+  gap: 8px;
+  z-index: 9999;
+}
+/* Reserve space so existing top-bar buttons don't sit under the floating controls */
+.topbar,
+.header,
+header.topbar,
+.ms-brand-banner {
+  padding-right: 196px !important;
+}
+.cp-ctrl-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--cp-border, #e1dfdd);
+  background: var(--cp-surface, #fff);
+  color: var(--cp-text, #201f1e);
+  cursor: pointer;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1.6px 3.6px rgba(0, 0, 0, 0.108);
+  transition:
+    background 0.12s,
+    transform 0.12s;
+}
+.cp-ctrl-btn:hover {
+  background: var(--cp-surface-hover, #f3f2f1);
+  transform: translateY(-1px);
+}
+/* Hovering is a mouse's way of finding these; a keyboard's way is Tab, and
+   without this it lands on whatever ring the browser happens to draw over
+   a bordered button — on a dark surface, often nothing you can see. The
+   shared hero-controls.css carries the same rule for the pages that load
+   it; the prompt book has its own copy of this stylesheet and did not. */
+.cp-ctrl-btn:focus-visible {
+  outline: 2px solid var(--accent, #0078d4);
+  outline-offset: 2px;
+}
+/* A finger has no hover state, but a tap still triggers :hover on touch
+   devices — and the 1px lift then sticks until you touch elsewhere. */
+@media (hover: none) {
+  .cp-ctrl-btn:hover {
+    transform: none;
+  }
+}
+.cp-ctrl-btn svg {
+  width: 17px;
+  height: 17px;
+  display: block;
+  fill: currentColor;
+}
+.cp-help-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+.cp-help-modal.open {
+  display: flex;
+}
+.cp-help-card {
+  background: var(--cp-surface, #fff);
+  color: var(--cp-text, #201f1e);
+  border-radius: 8px;
+  padding: 24px;
+  max-width: 480px;
+  width: 90%;
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.4);
+}
+.cp-help-card h3 {
+  margin: 0 0 14px;
+  font-size: 18px;
+}
+.cp-help-card kbd {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: var(--cp-surface-hover, #f3f2f1);
+  border: 1px solid var(--cp-border, #e1dfdd);
+  font-family: Consolas, monospace;
+  font-size: 12px;
+}
+.cp-help-card .cp-help-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--cp-border, #e1dfdd);
+}
+.cp-help-card .cp-help-row:last-child {
+  border: 0;
+}

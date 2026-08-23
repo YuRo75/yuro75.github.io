@@ -1,410 +1,98 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <!-- Without this a phone reports itself as a 980px desktop and renders
-         the page shrunk to fit: every card a third of its size, the text
-         below the point of being readable. The stylesheet's own responsive
-         rules never fire, because as far as the browser is concerned there
-         is nothing narrow about the screen. -->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'; connect-src 'self' http: https:; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; frame-ancestors 'none'"
-    />
-    <title>Copilot Prompt Book · SME&amp;C Channel</title>
-    <link
-      rel="icon"
-      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230078D4'/><text x='16' y='23' font-family='Segoe UI,Arial,sans-serif' font-size='19' font-weight='700' fill='white' text-anchor='middle'>P</text></svg>"
-    />
-    <script src="assets/bootstrap-theme.js"></script>
-    <script src="assets/pb-config.js"></script>
-    <link rel="stylesheet" href="assets/styles.css?v=11" />
-    <link rel="stylesheet" href="assets/cp-controls.css?v=8" />
-  </head>
-  <body>
-    <div class="container">
-      <header class="hero">
-        <div class="marks">
-          <img
-            class="mslogo mslogo-light"
-            src="../assets/microsoft-logo.png"
-            alt="Microsoft"
-            width="187"
-            height="40"
-          />
-          <img
-            class="mslogo mslogo-dark"
-            src="../assets/microsoft-logo-wht.png"
-            alt=""
-            aria-hidden="true"
-            width="187"
-            height="40"
-          />
-        </div>
-        <div class="titles">
-          <h1>Copilot Prompt Book</h1>
-          <div class="sub">Curated prompt library · search-as-you-type</div>
-        </div>
-        <div class="actions">
-          <div class="hdrbtns">
-            <a
-              class="mailbtn"
-              href="../"
-              id="btnHome"
-              title="Back to home"
-              aria-label="Back to home"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                width="16"
-                height="16"
-                fill="currentColor"
-              >
-                <path
-                  d="M12 3.2 3 10.4V21a1 1 0 0 0 1 1h5v-6h6v6h5a1 1 0 0 0 1-1V10.4L12 3.2Z"
-                /></svg
-            ></a>
-          </div>
-          <div class="cp-ctrl-bar" aria-label="Book controls">
-            <button
-              class="cp-ctrl-btn"
-              id="cpBtnFull"
-              title="Toggle fullscreen (G)"
-              aria-label="Toggle fullscreen"
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  id="cpFullPath"
-                  d="M4 4h6v2H6v4H4V4Zm10 0h6v6h-2V6h-4V4ZM4 14h2v4h4v2H4v-6Zm16 0v6h-6v-2h4v-4h2Z"
-                />
-              </svg>
-            </button>
-            <button
-              class="cp-ctrl-btn"
-              id="cpBtnTheme"
-              title="Toggle theme (T)"
-              aria-label="Toggle theme"
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  id="cpThemePath"
-                  d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.39 5.39 0 0 1-4.4 2.26 5.4 5.4 0 0 1-5.4-5.4c0-1.81.89-3.42 2.26-4.4A9.4 9.4 0 0 0 12 3Z"
-                />
-              </svg>
-            </button>
-            <button
-              class="cp-ctrl-btn"
-              id="cpBtnRefresh"
-              title="Reload page"
-              aria-label="Reload page"
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M17.65 6.35A7.96 7.96 0 0 0 12 4a8 8 0 1 0 7.73 10h-2.08A6 6 0 1 1 12 6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35Z"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </header>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="YuRo @ GitHub |Building with Github & AI">
+<meta name="author" content="Yuri Roos">
+<meta name="theme-color" content="#0d1117">
+<link rel="canonical" href="https://yuro75.github.io/">
 
-      <section class="toolbar" id="toolbar">
-        <div class="search">
-          <span class="ico"
-            ><svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16.1017 17.1624C14.717 18.3101 12.9391 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11C19 12.9391 18.3101 14.717 17.1624 16.1018L21.7803 20.7197C22.0732 21.0126 22.0732 21.4874 21.7803 21.7803C21.4874 22.0732 21.0125 22.0732 20.7196 21.7803L16.1017 17.1624ZM17.5 11C17.5 7.41015 14.5899 4.5 11 4.5C7.41015 4.5 4.5 7.41015 4.5 11C4.5 14.5899 7.41015 17.5 11 17.5C14.5899 17.5 17.5 14.5899 17.5 11Z"
-                fill="#212121"
-              />
-            </svg>
-          </span>
-          <input
-            type="search"
-            id="q"
-            placeholder="Search title, agent, tag, prompt body, variable…"
-            autocomplete="off"
-            spellcheck="false"
-          />
-          <span class="kbd">/</span>
-        </div>
-        <div class="chips" id="catChips">
-          <span class="chip-label">Agent</span>
-        </div>
-      </section>
-      <div class="load-error" id="loadError" hidden>
-        <div class="load-error-title">Prompt data could not be loaded</div>
-        <div class="load-error-body" id="loadErrorBody"></div>
-        <button class="btn secondary" id="retryDataLoad" type="button">
-          Retry loading prompts
-        </button>
+<!-- Open Graph / Facebook / LinkedIn -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="YuRo @ GitHub">
+<meta property="og:url" content="https://yuro75.github.io/">
+<meta property="og:title" content="YuRo @ GitHub">
+<meta property="og:description" content="Microsoft, building useful things with AI. Shareable prompt books and playbooks in one place.">
+<meta property="og:image" content="https://yuro75.github.io/icon-512.png">
+<meta property="og:image:alt" content="YuRo @ GitHub">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="YuRo @ GitHub">
+<meta name="twitter:description" content="Microsoft, building useful things with AI. Shareable prompt books and playbooks in one place.">
+<meta name="twitter:image" content="https://yuro75.github.io/icon-512.png">
+
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<title>YuRo @ GitHub</title>
+<style>
+  :root{
+    --navy:#0d1117; --panel:#161b22; --blue:#2f81f7; --blue2:#1f6feb;
+    --ink:#e6edf3; --muted:#8b949e; --line:#30363d; --card:#161b22;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;min-height:100vh;font-family:-apple-system,'Segoe UI',system-ui,Arial,sans-serif;
+    color:var(--ink);background:radial-gradient(1200px 600px at 50% -10%,#1b2742 0%,#0d1117 55%);}
+  .wrap{max-width:880px;margin:0 auto;padding:72px 24px 80px}
+  .hero{text-align:center;margin-bottom:48px}
+  .avatar{width:96px;height:96px;border-radius:50%;background:linear-gradient(135deg,var(--blue),#8957e5);
+    display:flex;align-items:center;justify-content:center;font-size:38px;font-weight:800;color:#fff;margin:0 auto 20px;
+    object-fit:cover;box-shadow:0 8px 30px rgba(47,129,247,.35)}
+  h1{margin:0 0 8px;font-size:34px;font-weight:800;letter-spacing:-.5px}
+  .tag{color:var(--muted);font-size:16px;margin:0}
+  .social{display:flex;gap:14px;justify-content:center;margin-top:20px}
+  .social a{color:var(--muted);font-size:14px;border:1px solid var(--line);padding:7px 14px;border-radius:20px;text-decoration:none;transition:.15s}
+  .social a:hover{color:#fff;border-color:var(--blue);background:rgba(47,129,247,.12)}
+  .sectitle{font-size:13px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:700;margin:0 0 16px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .card{display:block;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;
+    text-decoration:none;color:inherit;transition:.18s;position:relative;overflow:hidden}
+  .card:hover{border-color:var(--blue);transform:translateY(-3px);box-shadow:0 12px 34px rgba(0,0,0,.4)}
+  .card .ico{font-size:24px;margin-bottom:12px;display:block}
+  .card h3{margin:0 0 6px;font-size:18px;display:flex;align-items:center;gap:8px}
+  .card p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
+  .card .arrow{position:absolute;top:22px;right:22px;color:var(--muted);transition:.18s}
+  .card:hover .arrow{color:var(--blue);transform:translate(3px,-3px)}
+  .live{display:inline-block;font-size:11px;font-weight:700;color:#3fb950;background:rgba(63,185,80,.12);
+    border:1px solid rgba(63,185,80,.3);border-radius:20px;padding:2px 9px;vertical-align:middle}
+  footer{text-align:center;color:var(--muted);font-size:13px;margin-top:56px}
+  footer a{color:var(--blue);text-decoration:none}
+  .cta{margin-top:22px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:20px;
+    font-size:14px;font-weight:600;text-decoration:none;color:#fff;
+    background:linear-gradient(135deg,var(--blue),var(--blue2));border:1px solid var(--blue);
+    box-shadow:0 4px 16px rgba(47,129,247,.28);transition:.18s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(47,129,247,.42)}
+  .btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
+  @media(max-width:680px){.grid{grid-template-columns:1fr}h1{font-size:28px}}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <img class="avatar" src="icon-192.png" alt="YuRo @ GitHub" width="96" height="96">
+      <h1>YuRo @ GitHub</h1>
+      <p class="tag">Microsoft | building useful things with AI</p>
+      <div class="social">
       </div>
-      <div class="agentcards" id="agentCards"></div>
-      <div class="ahero" id="agentHero" style="display: none"></div>
-
-      <div id="list"></div>
-      <div id="agentBack2" class="aback aback-bottom" style="display: none">
-        &larr; Alle agents
-      </div>
-      <dialog id="dlg">
-        <div class="dlg-head">
-          <div>
-            <h2 id="dt"></h2>
-            <div class="meta" id="dm"></div>
-          </div>
-          <button class="close" id="dClose">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M4.39705 4.55379L4.46967 4.46967C4.73594 4.2034 5.1526 4.1792 5.44621 4.39705L5.53033 4.46967L12 10.939L18.4697 4.46967C18.7626 4.17678 19.2374 4.17678 19.5303 4.46967C19.8232 4.76256 19.8232 5.23744 19.5303 5.53033L13.061 12L19.5303 18.4697C19.7966 18.7359 19.8208 19.1526 19.6029 19.4462L19.5303 19.5303C19.2641 19.7966 18.8474 19.8208 18.5538 19.6029L18.4697 19.5303L12 13.061L5.53033 19.5303C5.23744 19.8232 4.76256 19.8232 4.46967 19.5303C4.17678 19.2374 4.17678 18.7626 4.46967 18.4697L10.939 12L4.46967 5.53033C4.2034 5.26406 4.1792 4.8474 4.39705 4.55379L4.46967 4.46967L4.39705 4.55379Z"
-                fill="#212121"
-              />
-            </svg>
-          </button>
-        </div>
-        <div class="dlg-body">
-          <div class="use-case" id="duc"></div>
-          <div class="vars-list" id="dvars"></div>
-          <pre id="db"></pre>
-          <div class="chain" id="dchain"></div>
-        </div>
-        <div class="dlg-foot">
-          <button class="btn" id="dcopy">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M5.5028 4.62704L5.5 6.75V17.2542C5.5 19.0491 6.95507 20.5042 8.75 20.5042L17.3663 20.5045C17.0573 21.3782 16.224 22.0042 15.2444 22.0042H8.75C6.12665 22.0042 4 19.8776 4 17.2542V6.75C4 5.76929 4.62745 4.93512 5.5028 4.62704ZM17.75 2C18.9926 2 20 3.00736 20 4.25V17.25C20 18.4926 18.9926 19.5 17.75 19.5H8.75C7.50736 19.5 6.5 18.4926 6.5 17.25V4.25C6.5 3.00736 7.50736 2 8.75 2H17.75ZM17.75 3.5H8.75C8.33579 3.5 8 3.83579 8 4.25V17.25C8 17.6642 8.33579 18 8.75 18H17.75C18.1642 18 18.5 17.6642 18.5 17.25V4.25C18.5 3.83579 18.1642 3.5 17.75 3.5Z"
-                fill="#212121"
-              />
-            </svg>
-            Copy
-          </button>
-          <a class="btn" id="dcopilot" target="_blank" rel="noopener"
-            >Open Copilot</a
-          >
-        </div>
-      </dialog>
-      <dialog id="compareDlg">
-        <div class="dlg-head">
-          <div>
-            <h2>Compare prompts</h2>
-            <div class="meta">Side-by-side comparison</div>
-          </div>
-          <button class="close" id="cmpClose" aria-label="Close compare dialog">
-            ✕
-          </button>
-        </div>
-        <div class="dlg-body">
-          <div class="compare-grid" id="compareGrid"></div>
-        </div>
-      </dialog>
-
-      <dialog id="varDlg">
-        <div class="dlg-head">
-          <div>
-            <h2 id="varTitle">Fill in variables</h2>
-            <div class="meta">
-              Provide values, then copy or open — or skip to keep {{…}} as-is.
-            </div>
-          </div>
-          <button class="close" id="varClose">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M4.39705 4.55379L4.46967 4.46967C4.73594 4.2034 5.1526 4.1792 5.44621 4.39705L5.53033 4.46967L12 10.939L18.4697 4.46967C18.7626 4.17678 19.2374 4.17678 19.5303 4.46967C19.8232 4.76256 19.8232 5.23744 19.5303 5.53033L13.061 12L19.5303 18.4697C19.7966 18.7359 19.8208 19.1526 19.6029 19.4462L19.5303 19.5303C19.2641 19.7966 18.8474 19.8208 18.5538 19.6029L18.4697 19.5303L12 13.061L5.53033 19.5303C5.23744 19.8232 4.76256 19.8232 4.46967 19.5303C4.17678 19.2374 4.17678 18.7626 4.46967 18.4697L10.939 12L4.46967 5.53033C4.2034 5.26406 4.1792 4.8474 4.39705 4.55379L4.46967 4.46967L4.39705 4.55379Z"
-                fill="#212121"
-              />
-            </svg>
-          </button>
-        </div>
-        <div class="dlg-body">
-          <div class="dlg-form" id="varForm"></div>
-        </div>
-        <div class="dlg-foot">
-          <button class="btn" id="varConfirm">Continue</button>
-          <button class="btn ghost" id="varSkip">Skip — keep {{…}}</button>
-          <button class="btn ghost" id="varCancel">Cancel</button>
-        </div>
-      </dialog>
-
-      <dialog id="addDlg">
-        <div class="dlg-head">
-          <div>
-            <h2>Add a new prompt</h2>
-            <div class="meta">Yuri Roos</div>
-          </div>
-          <button class="close" id="addClose">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M4.39705 4.55379L4.46967 4.46967C4.73594 4.2034 5.1526 4.1792 5.44621 4.39705L5.53033 4.46967L12 10.939L18.4697 4.46967C18.7626 4.17678 19.2374 4.17678 19.5303 4.46967C19.8232 4.76256 19.8232 5.23744 19.5303 5.53033L13.061 12L19.5303 18.4697C19.7966 18.7359 19.8208 19.1526 19.6029 19.4462L19.5303 19.5303C19.2641 19.7966 18.8474 19.8208 18.5538 19.6029L18.4697 19.5303L12 13.061L5.53033 19.5303C5.23744 19.8232 4.76256 19.8232 4.46967 19.5303C4.17678 19.2374 4.17678 18.7626 4.46967 18.4697L10.939 12L4.46967 5.53033C4.2034 5.26406 4.1792 4.8474 4.39705 4.55379L4.46967 4.46967L4.39705 4.55379Z"
-                fill="#212121"
-              />
-            </svg>
-          </button>
-        </div>
-        <div class="dlg-body">
-          <div class="dlg-form">
-            <label
-              >Title<input
-                type="text"
-                id="apTitle"
-                placeholder="Short descriptive title"
-            /></label>
-            <label
-              >Agent<input
-                type="text"
-                id="apAgent"
-                placeholder="e.g. Know Your Partner Agent (optional)"
-            /></label>
-            <label
-              >Prompt body<textarea
-                id="apBody"
-                placeholder="The optimized prompt text…"
-              ></textarea>
-            </label>
-          </div>
-        </div>
-        <div class="dlg-foot">
-          <button class="btn" id="apSubmit">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M6.24992 4.5C5.28344 4.5 4.49996 5.2835 4.49996 6.25V17.75C4.49996 18.7165 5.28344 19.5 6.24992 19.5H17.7496C18.7161 19.5 19.4996 18.7165 19.4996 17.75V13.75C19.4996 13.3358 19.8354 13 20.2496 13C20.6638 13 20.9995 13.3358 20.9995 13.75V17.75C20.9995 19.5449 19.5445 21 17.7496 21H6.24992C4.45504 21 3 19.5449 3 17.75V6.25C3 4.45507 4.45504 3 6.24992 3H10.2498C10.664 3 10.9998 3.33579 10.9998 3.75C10.9998 4.16421 10.664 4.5 10.2498 4.5H6.24992ZM12.9997 3.75C12.9997 3.33579 13.3355 3 13.7497 3H20.25C20.6642 3 21 3.33579 21 3.75V10.25C21 10.6642 20.6642 11 20.25 11C19.8358 11 19.5 10.6642 19.5 10.25V5.56074L14.28 10.7804C13.9871 11.0732 13.5123 11.0732 13.2194 10.7803C12.9265 10.4874 12.9265 10.0125 13.2194 9.71964L18.4395 4.5H13.7497C13.3355 4.5 12.9997 4.16421 12.9997 3.75Z"
-                fill="#212121"
-              />
-            </svg>
-            Send
-          </button>
-          <button class="btn ghost" id="apCancel">Cancel</button>
-        </div>
-      </dialog>
-      <dialog id="featDlg">
-        <div class="dlg-head">
-          <div>
-            <h2>New feature request</h2>
-            <div class="meta">Yuri Roos</div>
-          </div>
-          <button class="close" id="frClose">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M4.39705 4.55379L4.46967 4.46967C4.73594 4.2034 5.1526 4.1792 5.44621 4.39705L5.53033 4.46967L12 10.939L18.4697 4.46967C18.7626 4.17678 19.2374 4.17678 19.5303 4.46967C19.8232 4.76256 19.8232 5.23744 19.5303 5.53033L13.061 12L19.5303 18.4697C19.7966 18.7359 19.8208 19.1526 19.6029 19.4462L19.5303 19.5303C19.2641 19.7966 18.8474 19.8208 18.5538 19.6029L18.4697 19.5303L12 13.061L5.53033 19.5303C5.23744 19.8232 4.76256 19.8232 4.46967 19.5303C4.17678 19.2374 4.17678 18.7626 4.46967 18.4697L10.939 12L4.46967 5.53033C4.2034 5.26406 4.1792 4.8474 4.39705 4.55379L4.46967 4.46967L4.39705 4.55379Z"
-                fill="#212121"
-              />
-            </svg>
-          </button>
-        </div>
-        <div class="dlg-body">
-          <div class="dlg-form">
-            <label
-              >What I would like<textarea
-                id="frWant"
-                placeholder="Describe the feature you'd like"
-              ></textarea>
-            </label>
-          </div>
-        </div>
-        <div class="dlg-foot">
-          <button class="btn" id="frSubmit">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M6.24992 4.5C5.28344 4.5 4.49996 5.2835 4.49996 6.25V17.75C4.49996 18.7165 5.28344 19.5 6.24992 19.5H17.7496C18.7161 19.5 19.4996 18.7165 19.4996 17.75V13.75C19.4996 13.3358 19.8354 13 20.2496 13C20.6638 13 20.9995 13.3358 20.9995 13.75V17.75C20.9995 19.5449 19.5445 21 17.7496 21H6.24992C4.45504 21 3 19.5449 3 17.75V6.25C3 4.45507 4.45504 3 6.24992 3H10.2498C10.664 3 10.9998 3.33579 10.9998 3.75C10.9998 4.16421 10.664 4.5 10.2498 4.5H6.24992ZM12.9997 3.75C12.9997 3.33579 13.3355 3 13.7497 3H20.25C20.6642 3 21 3.33579 21 3.75V10.25C21 10.6642 20.6642 11 20.25 11C19.8358 11 19.5 10.6642 19.5 10.25V5.56074L14.28 10.7804C13.9871 11.0732 13.5123 11.0732 13.2194 10.7803C12.9265 10.4874 12.9265 10.0125 13.2194 9.71964L18.4395 4.5H13.7497C13.3355 4.5 12.9997 4.16421 12.9997 3.75Z"
-                fill="#212121"
-              />
-            </svg>
-            Send
-          </button>
-          <button class="btn ghost" id="frCancel">Cancel</button>
-        </div>
-      </dialog>
-
-      <div class="toast" id="toast"></div>
-    </div>
-
-    <script src="assets/app.js?v=5" defer></script>
-    <div
-      class="cp-help-modal"
-      id="cpHelpModal"
-      role="dialog"
-      aria-modal="true"
-      aria-label="Keyboard shortcuts"
-    >
-      <div class="cp-help-card">
-        <h3>Keyboard shortcuts</h3>
-        <div class="cp-help-row"><span>Focus search</span><kbd>/</kbd></div>
-        <div class="cp-help-row"><span>Add a new prompt</span><kbd>A</kbd></div>
-        <div class="cp-help-row"><span>Copy open prompt</span><kbd>C</kbd></div>
-        <div class="cp-help-row">
-          <span>Open random prompt</span><kbd>R</kbd>
-        </div>
-        <div class="cp-help-row">
-          <span>Command palette</span><kbd>Ctrl/Cmd+K</kbd>
-        </div>
-        <div class="cp-help-row"><span>Toggle theme</span><kbd>T</kbd></div>
-        <div class="cp-help-row">
-          <span>Toggle fullscreen</span><kbd>G</kbd>
-        </div>
-        <div class="cp-help-row"><span>Open help</span><kbd>?</kbd></div>
-        <div class="cp-help-row"><span>Close dialog</span><kbd>Esc</kbd></div>
-        <div style="margin-top: 16px; text-align: right">
-          <button
-            class="cp-ctrl-btn"
-            id="cpHelpClose"
-            style="
-              width: auto;
-              border-radius: 6px;
-              padding: 0 14px;
-              height: 32px;
-            "
-          >
-            Close
-          </button>
-        </div>
+      <div class="cta">
+        <a class="btn" href="pdm-prompt-book/">
+          <span aria-hidden="true">&#128202;</span> PDM Prompt Book
+        </a>
       </div>
     </div>
-    <script src="assets/cp-controls.js?v=3" defer></script>
-  </body>
+
+     <div class="grid">
+    </div>
+
+    <footer>
+      Hosted on GitHub Pages &middot; <a href="https://github.com/YuRo75/yuro75.github.io">source</a> &middot; Updated August 2026
+    </footer>
+  </div>
+</body>
 </html>
